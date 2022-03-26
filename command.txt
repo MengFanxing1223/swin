@@ -1,0 +1,32 @@
+#VS2019
+#pytorch 1.8.1
+#torchvision 0.9.1
+
+打开anaconda power shell
+
+conda create -n Swin python=3.8
+conda activate Swin
+conda install pytorch=1.8 torchvision cudatoolkit=10.2 -c pytorch
+
+pip install cython  matplotlib opencv-python
+
+1、安装mmcv
+    cd mmcv-1.3.1
+    pip install -r .\requirements.txt
+
+    $env:TORCH_CUDA_ARCH_LIST="6.1"
+    $env:MMCV_WITH_OPS = 1
+    $env:MAX_JOBS = 8
+    
+    python setup.py build_ext
+    python setup.py develop
+
+2、安装mmdetection
+   pip install -r requirements.txt
+   python setup.py develop
+
+3、安装apex
+   cd apex-master
+   pip install -v --no-cache-dir --global-option="--cpp_ext" --global-option="--cuda_ext" .
+   
+4、python demo/image_demo.py demo/demo.jpg configs/swin/mask_rcnn_swin_tiny_patch4_window7_mstrain_480-800_adamw_3x_coco.py mask_rcnn_swin_tiny_patch4_window7.pth
